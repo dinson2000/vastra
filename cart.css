@@ -1,0 +1,11 @@
+.container-fluid{
+ padding-left: 0px;
+ padding-right: 0px;
+
+}
+.box{
+  background-color: white;
+  /* height: 20px; */
+  width: 100%;
+  /* border: 2px solid black; */
+}
