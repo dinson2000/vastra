@@ -62,7 +62,7 @@
 						</div>
 				</div>		
 			</li>
-				<li class="ml-3 nav-item"><a href="login.php" class="nav-link active text-white">
+				<li class="ml-3 nav-item"><a href="thisIsCart.php" class="nav-link active text-white">
                     <h4 class="cart">
                         <i class="fas fa-shopping-cart"></i><p class="pa1"> Cart</p>
                         <span id="cart_count" class="pa1 bg-light" style="color:#FF9933;">0</span>
