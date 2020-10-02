@@ -77,7 +77,6 @@
 <body>
 
   <div class="container-fluid cardcontainer mt-4">
-<h3>I watn to do cahnes</h3>
     <div class="card card1" style="margin-top:20px;">
       <img class="card-img-top image1" src="./images/images1.jpg" alt="">
       <div class="card-body" style="margin:0px;">
