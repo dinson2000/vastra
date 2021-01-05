@@ -41,7 +41,7 @@
               <a href="addarticle.php" target="frame"><span class="fa fa-user"></span>Add Article</a>
           </li> -->
           <li>
-              <a href="addproduct.php" target="frame"><span class="fa fa-user"></span>Add Product</a>
+              <a href="product.php" target="frame"><span class="fa fa-product-hunt"></span>Product Master</a>
           </li>
           <li>
             <a href="#" target="frame"><span class="material-icons">&#xe0c9;</span> Order Master</a>
@@ -50,7 +50,7 @@
             <a href="#" target="frame"><span class="material-icons">&#xe0c9;</span> User Master</a>
           </li>
           <li>
-            <a href="#" target="frame"><span class="material-icons">&#xe0c9;</span> Contact Us</a>
+            <a href="contact.php" target="frame"><span class="material-icons">&#xe0c9;</span> Contact Mater</a>
           </li>
         </ul>
 
@@ -82,7 +82,8 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Account</a>
+              <a class="nav-link" href="addproduct.php" target="frame"><span class="fa fa-product-hunt"></span>Add Product</a>
+                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Messages</a>

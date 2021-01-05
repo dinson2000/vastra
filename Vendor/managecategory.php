@@ -24,8 +24,21 @@ if (isset($_POST['submit'])) {
   $result=mysqli_query($conn,"SELECT * FROM categories where categories='$categories'");
   $check=mysqli_num_rows($result);
   if($check>0){
+if(isset($_GET['id']) && $_GET['id']!=''){
+  $getData=mysqli_fetch_assoc($result);
+  if($id==$getData['id']){
+
+  }else{
     $msg="Category already Exist";
-  }else{   
+
+  }
+}else{
+  $msg="Category already Exist";
+
+}
+
+  }
+  if($msg==''){   
     if(isset($_GET['id']) && $_GET['id']!=''){
       mysqli_query($conn,"UPDATE categories set categories='$categories' where id='$id'");
     }

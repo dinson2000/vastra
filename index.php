@@ -10,12 +10,14 @@ include "function.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vastra</title>
   <link rel="icon" href="images/logo.png">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
   <link rel="stylesheet" type="text/css" href="Beforelogin/style.css">
 
   <link rel="stylesheet" type="text/css" href="Beforelogin/sidebar1.css">
+  
   <!-- <style>
         .cardcontainer {
             display: flex;
@@ -78,7 +80,7 @@ include "function.php";
   <?php include("carousel.php"); ?>
   
   <div style="text-align:center;" class="mt-3">
-    <h5 class="mb-0"><b>BROSWE</b></h5>
+    <h5 class="mb-0"><b>BROWSE</b></h5>
     <h1 style="border-bottom:3px solid #FF9933;display:inline">TRENDING</h1>
   </div>
   <!-- Images responsive having transition and transformation -->
@@ -173,52 +175,8 @@ include "function.php";
 
 
     </div>
-    <!-- End Here -->
-    <!-- <div class="mt-3" style="text-align:center;">
-      <h5 class="mb-0"><b>BEST</b></h5>
-      <h1 style="border-bottom:3px solid #FF9933;display:inline">DESIGNS</h1>
-    </div>
-    Carousel With Graphics
-
-    <div class="col-md-6">
-      <img src="images/cg.jpg" style="width:100%;height:20rem;" alt="">
-    </div>
-
-    <div id="carouselExampleIndicators" style="width:100%;" class="carousel slide col-md-6" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" style="height:20rem;" src="images/1c.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" style="height:20rem;" src="images/2c.jpg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" style="height:20rem;" src="images/3c.jpg" alt="Third slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" style="height:20rem;" src="images/4c.jpg" alt="Fourth slide">
-      </div>
-    </div>
-
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span id="ka1" class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span id="ka1" class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  </div>
-    End of carousel and Graphics -->
-    <?php include('footer.php'); ?>
+  
+    <?php include('./footer.php'); ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 </script>

@@ -4,8 +4,9 @@
 	<title>Footer</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">  
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="footer.css">
+	<link rel="stylesheet" href="./footer.css">
 </head>
 <body>
 <footer style="background-color:black;border-top: 2px solid #FF9933;" class="mt-5 py-4">
@@ -18,7 +19,7 @@
 					<li class="mb-4"><a href="#about"><h4 class="p2 font-weight-bold">About Us</h4></a>
 						<p class="p1" style="font-size: 18px">We are here to help things build.</p>
 					</li>
-					<li class="mb-3"><a href="order.html"><h4 class="p2 font-weight-bold mb-3">Contact Us</h4></a>
+					<li class="mb-3"><a href="contact_us.php"><h4 class="p2 font-weight-bold mb-3">Contact Us</h4></a>
 					<p class="p1" style="margin:0;">Call Us: +91 7597241244</p><p class="p1">Mail Us: soni.dineshds2000@gmail.com</p>
 					</li>			
 				</ul>

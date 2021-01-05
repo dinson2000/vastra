@@ -7,12 +7,14 @@
 	<link rel="stylesheet" type="text/css" href="sidebar1.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-  	<!-- <style>
-  	div.container-fluid{
-		  padding-left:0px;
-		  padding-right:0px;
-	  }
-	  </style> -->
+  	<style>
+	  @font-face {
+      font-family: myFirstFont;
+      src: url("../Fonts/Montserrat-Regular.ttf");
+    }
+	
+	  </style>
+	  
 	  
 </head>
 <body>
@@ -57,7 +59,7 @@
 						    <a class="text-dark dropdown-item" href="login.php"><h4>Order</h4></a>
 						    <a class="text-dark dropdown-item" href="#"><h4>Today's Deals</h4></a>
 						    <a class="text-dark dropdown-item" href="#"><h4>Settings</h4></a>
-						    <a class="text-dark dropdown-item" href="#"><h4>24*7 help</h4></a>
+						    <a class="text-dark dropdown-item" href="contact_us.php"><h4>24*7 help</h4></a>
 						  </div>
 						</div>
 				</div>		
