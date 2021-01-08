@@ -91,7 +91,7 @@ function ScaleSlider() {
         .jssora055.jssora055dn {opacity:.5;}
         .jssora055.jssora055ds {opacity:.3;pointer-events:none;}
     </style>
-    <div class="carousel_height" id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;height:280px;width:1400px;overflow:hidden;visibility:hidden;">
+    <div class="carousel_height"  id="jssor_1" style="position:relative;margin-left:auto;margin-right:auto;margin-top:100px;top:0px;left:0px;height:280px;width:1400px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
         <div data-u="loading" class="jssorl-004-double-tail-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/double-tail-spin.svg" />
@@ -109,9 +109,9 @@ function ScaleSlider() {
             <div style="background-color:#000000;">
                 <img data-u="image" style="opacity:0.5;" src="images/4c.jpg" />
             </div>
-            <div>
+            <!-- <div>
                 <img data-u="image" src="images/5c.jpg" />
-            </div>
+            </div> -->
         </div><a data-scale="0" href="https://www.jssor.com" style="display:none;position:absolute;">responsive slider</a>
         <!-- Bullet Navigator -->
         <div data-u="navigator" class="jssorb102" style="position:absolute;bottom:16px;right:16px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">

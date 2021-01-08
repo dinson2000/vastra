@@ -74,11 +74,9 @@ div.container-fluid {
 #sidebarCollapse.ba1{
     display:none;
 }
-body {
-    font-family: "Lato", sans-serif;
-  }
+
   
-  .sidenav {
+  /* .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
@@ -110,7 +108,7 @@ body {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-  }
+  } */
    @media screen and (max-width: 768px) {
     #ci.container-fluid {
       padding: 0 0 0 0px;

@@ -64,7 +64,7 @@ $result=mysqli_query($conn,$sql);
       <th scope="row"><?php echo $i; ?></th>
       <td><?php echo $row['id']; ?></td>
       <td><?php echo $row['categories']; ?></td>
-      <td><img style="height:40px;width:40px;" src="./images/<?php echo $row['image'];?>"></td>
+      <td><img style="height:40px;width:40px;" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$row['image'];?>"></td>
       <td><?php echo $row['name']; ?></td>
       <td><?php echo $row['offeredprice']; ?></td>
       <td><?php echo $row['realprice']; ?></td>
