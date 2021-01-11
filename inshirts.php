@@ -1,6 +1,6 @@
 <?php
-include "connection.php";
-include "function.php";
+// include "connection.php";
+// include "function.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +11,9 @@ include "function.php";
   <title>Inshirts</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="Beforelogin/sidebar1.css">
-  <link rel="stylesheet" href="Beforelogin/style.css">
+  <link rel="stylesheet" href="./sidebar1.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style3.css">
   <style>
     .main {
 
@@ -121,7 +122,7 @@ include "function.php";
 </head>
 
 <body>
-  <?php include("Beforelogin/header.php") ?>
+  <?php include("./header.php") ?>
   <div class="container-fluid">
     <div class="row mx-0">
       <div class="col-md-4">
@@ -288,6 +289,27 @@ include "function.php";
   </div>
 
   <?php include("footer.php") ?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+      });
+
+      $('#dismiss, .overlay').on('click', function() {
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+      });
+
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar').addClass('active');
+        $('.overlay').addClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+    });
+  </script>
   <script>
     $("input:checkbox").on('click', function() {
       // in the handler, 'this' refers to the box clicked on

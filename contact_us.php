@@ -1,6 +1,6 @@
 <?php
-require "connection.php";
-require "function.php";
+// require "connection.php";
+// require "function.php";
 if(isset($_POST['submit'])){
     $name=get_post($conn,$_POST['name']);
     $number=get_post($conn,$_POST['number']);
@@ -26,35 +26,36 @@ if(isset($_POST['submit'])){
 
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="Beforelogin/style.css">
-    <link rel="stylesheet" href="Beforelogin/sidebar1.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style3.css">
+    <link rel="stylesheet" href="./sidebar1.css">
     <title>Contact Us</title>
   </head>
   <body>
-  <?php include "./Beforelogin/header.php"; ?>
+  <?php include "./header.php"; ?>
   <div style="text-align:center;" class="mt-3">
     <h1 style="border-bottom:3px solid #FF9933;display:inline">Contact Us</h1>
   </div>
   <form class="p-4" method="POST" action="">
   <div class="form-group">
     <label for="exampleFormControlInput1">Name :</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Name">
+    <input type="text" class="form-control" name="name" placeholder="Name">
   </div>
   
   <div class="form-group">
     <label for="exampleFormControlInput1">Phone No. :</label>
-    <input type="number" class="form-control" id="exampleFormControlInput1" name="number" placeholder="Registered Phone Number">
+    <input type="number" class="form-control" name="number" placeholder="Registered Phone Number">
   </div>
   
 
   <div class="form-group">
     <label for="exampleFormControlInput1">Email Address :</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="Registered Email Address">
+    <input type="email" class="form-control" name="email" placeholder="Registered Email Address">
   </div>
   
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Message :</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" placeholder="Enter your query here..." rows="3"></textarea>
+    <textarea class="form-control" name="message" placeholder="Enter your query here..." rows="3"></textarea>
   </div>
   <div class="form-group text-center">
    <input type="submit" style="background-color: #FF9933;" class="btn btn-md" name="submit" value="Submit">
@@ -63,17 +64,32 @@ if(isset($_POST['submit'])){
 </form>
 
     <?php include "footer.php"; ?>
-    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-    -->
- 
+        $('#dismiss, .overlay').on('click', function() {
+          $('#sidebar').removeClass('active');
+          $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function() {
+          $('#sidebar').addClass('active');
+          $('.overlay').addClass('active');
+          $('.collapse.in').toggleClass('in');
+          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+      });
+    </script>
+
+
 
   </body>
 </html>

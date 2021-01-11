@@ -3,7 +3,7 @@
 */
 @font-face {
     font-family: myFirstFont;
-    src: url("../Fonts/Montserrat-Regular.ttf");
+    src: url("./Fonts/Montserrat-Regular.ttf");
 }
 /* body {
     font-family: 'Poppins', sans-serif;
@@ -51,6 +51,19 @@ a:focus {
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .align-items {
+    align-items: center;
+  }
+ .categories{
+    margin-top:100px;
+}
 
 #sidebar {
     width: 250px;

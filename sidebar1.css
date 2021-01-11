@@ -27,7 +27,7 @@
 /* }  */
 @font-face {
 font-family: myFirstFont;
-src: url("../Fonts/Montserrat-Regular.ttf");
+src: url("./Fonts/Montserrat-Regular.ttf");
 }
 div.container-fluid {
   padding-left: 0px;
@@ -174,7 +174,14 @@ div.container-fluid {
       #ka1{
         display: none;
     }
+    .categories{
+      display: none;
+    }
+    .align-items{
+        display:none;
+    }
 }
+
 @media screen and (max-width:600px) {
   .image1 {
     height: 62vw;

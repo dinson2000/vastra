@@ -90,8 +90,16 @@ function ScaleSlider() {
         .jssora055:hover {opacity:.8;}
         .jssora055.jssora055dn {opacity:.5;}
         .jssora055.jssora055ds {opacity:.3;pointer-events:none;}
+        .margin{
+            margin-top:30px;
+        } 
+        @media screen and (max-width:768px){
+            .margin{
+            margin-top:-20px;   
+        }
+        }
     </style>
-    <div class="carousel_height"  id="jssor_1" style="position:relative;margin-left:auto;margin-right:auto;margin-top:100px;top:0px;left:0px;height:280px;width:1400px;overflow:hidden;visibility:hidden;">
+    <div class="carousel_height margin"  id="jssor_1" style="position:relative;margin-left:auto;margin-right:auto;top:0px;left:0px;height:280px;width:1400px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
         <div data-u="loading" class="jssorl-004-double-tail-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/double-tail-spin.svg" />

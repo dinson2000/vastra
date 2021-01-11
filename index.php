@@ -1,6 +1,6 @@
 <?php
-include "connection.php";
-include "function.php";
+// include "connection.php";
+// include "function.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +17,10 @@ include "function.php";
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
-  <link rel="stylesheet" type="text/css" href="Beforelogin/style.css">
-  <link rel="stylesheet" type="text/css" href="Beforelogin/style3.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <link rel="stylesheet" type="text/css" href="./style3.css">
 
-  <link rel="stylesheet" type="text/css" href="Beforelogin/sidebar1.css">
+  <link rel="stylesheet" type="text/css" href="./sidebar1.css">
 
   <!-- <style>
         .cardcontainer {
@@ -46,11 +46,11 @@ include "function.php";
 
 <body>
 
-  <?php include("Beforelogin/header.php"); ?>
+  <?php include("./header.php"); ?>
 
   <!-- Carousel content  -->
-  <div class="container-fluid" >
-  <?php include("carousel.php"); ?>
+  <div class="container-fluid">
+    <?php include("carousel.php"); ?>
   </div>
   <!-- Carousel content end here  -->
 
@@ -113,31 +113,30 @@ include "function.php";
     <div id="ci" class="container-fluid cardcontainer mt-4">
 
       <?php
-      $sql = "SELECT * FROM product";
-      $result = mysqli_query($conn, $sql);
-      while ($row = mysqli_fetch_array($result)) {
+        $get_product=get_product($conn,"latest",8);
+      foreach($get_product as $list) {
       ?>
         <div class="card card1" style="margin-top:20px;">
-          <a href="inshirts.php?id=<?php echo $row['id'] ?>">
-            <img class="card-img-top image1" src="Vendor/images/<?php echo $row['image']; ?>" alt="">
+          <a href="inshirts.php?id=<?php echo $list['id'] ?>">
+            <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
           </a>
           <div class="card-body" style="margin:0px;">
 
-            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;"><?php custom_echo($row['name'], 18); ?>...</h3>
+            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;"><?php custom_echo($list['name'], 18); ?>...</h3>
             <!-- <p class="card-text">
   This is the coder t-shirt good cotton,premium quality.
 </p>  -->
-            <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $row['offeredprice']; ?>
+            <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $list['offeredprice']; ?>
             </h6>
-            <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $row['realprice']; ?></h6>
+            <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $list['realprice']; ?></h6>
             <?php
-            if ($row['category'] == "BEST") {
+            if ($list['category'] == "BEST") {
               echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>';
-            } else if ($row['category'] == "LIMITED") {
+            } else if ($list['category'] == "LIMITED") {
               echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>';
-            } else if ($row['category'] == "NEW") {
+            } else if ($list['category'] == "NEW") {
               echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>';
-            } else if ($row['category'] == "FEW") {
+            } else if ($list['category'] == "FEW") {
               echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>';
             }
             ?>
@@ -149,11 +148,56 @@ include "function.php";
 
     </div>
 
+    <!-- New arrivals -->
+    <div class="mt-3" style="text-align:center;">
+      <h5 class="mb-0"><b>NEW</b></h5>
+      <h1 style="border-bottom:3px solid #FF9933;display:inline">ARRIVALS</h1>
+    </div>
+
+    <div id="ci" class="container-fluid cardcontainer mt-4">
+
+      <?php
+     $get_product=get_product($conn,"latest",4);
+     foreach($get_product as $list){
+      ?>
+        <div class="card card1" style="margin-top:20px;">
+          <a href="inshirts.php?id=<?php echo $list['id'] ?>">
+            <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
+          </a>
+          <div class="card-body" style="margin:0px;">
+
+            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;"><?php custom_echo($list['name'], 18); ?>...</h3>
+            <!-- <p class="card-text">
+This is the coder t-shirt good cotton,premium quality.
+</p>  -->
+            <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $list['offeredprice']; ?>
+            </h6>
+            <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $list['realprice']; ?></h6>
+            <?php
+            if ($list['category'] == "BEST") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>';
+            } else if ($list['category'] == "LIMITED") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>';
+            } else if ($list['category'] == "NEW") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>';
+            } else if ($list['category'] == "FEW") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>';
+            }
+            ?>
+          </div>
+        </div>
+      <?php } ?>
+
+
+
+    </div>
+    <!-- New Arrivals End -->
+
     <?php include('./footer.php'); ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {
