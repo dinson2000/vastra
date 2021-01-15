@@ -8,11 +8,15 @@ function prx($arr){
   print_r($arr);
   die();
 }
-function get_product($conn,$type='',$limit=''){
+function get_product($conn,$limit='',$cat_id='',$product_id=''){
   $sql="SELECT * FROM product where status='1'";
-  if($type=="latest"){
-    $sql.=" order by id desc";
+  if($cat_id!=''){
+    $sql.=" and categories_id=$cat_id";
   }
+  if($product_id!=''){
+    $sql.=" and id=$product_id";
+  }
+  $sql.=" order by id desc";
   if($limit!=""){
     $sql.=" limit $limit";
   }

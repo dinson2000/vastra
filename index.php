@@ -113,11 +113,11 @@
     <div id="ci" class="container-fluid cardcontainer mt-4">
 
       <?php
-        $get_product=get_product($conn,"latest",8);
+        $get_product=get_product($conn,'');
       foreach($get_product as $list) {
       ?>
         <div class="card card1" style="margin-top:20px;">
-          <a href="inshirts.php?id=<?php echo $list['id'] ?>">
+          <a href="product.php?id=<?php echo $list['id'] ?>">
             <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
           </a>
           <div class="card-body" style="margin:0px;">
@@ -157,11 +157,11 @@
     <div id="ci" class="container-fluid cardcontainer mt-4">
 
       <?php
-     $get_product=get_product($conn,"latest",4);
+     $get_product=get_product($conn,'');
      foreach($get_product as $list){
       ?>
         <div class="card card1" style="margin-top:20px;">
-          <a href="inshirts.php?id=<?php echo $list['id'] ?>">
+          <a href="product.php?id=<?php echo $list['id'] ?>">
             <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
           </a>
           <div class="card-body" style="margin:0px;">

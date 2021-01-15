@@ -1,6 +1,15 @@
-<?php
-// include "connection.php";
-// include "function.php";
+<?php require "./header.php";
+$product_id=mysqli_real_escape_string($conn,$_GET['id']);
+
+if($product_id>0){
+ $get_product=get_product($conn,'','',$product_id);
+}else{
+  ?>
+<script>
+  window.location.href='index.php';
+</script>
+  <?php
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,18 +131,12 @@
 </head>
 
 <body>
-  <?php include("./header.php") ?>
+  
   <div class="container-fluid">
     <div class="row mx-0">
       <div class="col-md-4">
         <div class="main">
-          <?php
-          $id = $_GET['id'];
-          $sql = "SELECT * FROM product WHERE id='$id'";
-          $result = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_array($result)) {
-          ?>
-            <img class="d-block mb-1" src="./Vendor/images/<?php echo $row['image'] ?>" style="height: 25rem; width: 100%;" alt="">
+            <img class="d-block mb-1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$get_product['0']['image'] ?>" style="height: 25rem; width: 100%;" alt="">
             <div class="pl-1">
               <input class="btn font-weight-bold mb-1" type="submit" style="background-color:#FF9933;width:99%;height:40px;" value="Buy Now">
               <input class="btn font-weight-bold" type="submit" style="background-color:#FF9933;width:49%;height: 40px;" value="Add to Cart">
@@ -145,16 +148,16 @@
         <div class="mt-5 p-2">
           <table>
             <tr>
-              <h6 class="font-weight-bold" style="color:grey;"><?php echo $row['brand']; ?></h6>
+              <h6 class="font-weight-bold" style="color:grey;"><?php echo $get_product['0']['brand']; ?></h6>
             </tr>
             <tr>
-              <h4><?php echo $row['name']; ?>, <?php echo $row['colour']; ?>, <?php echo $row['type']; ?>, (Pack of <?php echo $row['packof']; ?>)</h4>
+              <h4><?php echo $get_product['0']['name']; ?>, <?php echo $get_product['0']['colour']; ?>, <?php echo $get_product['0']['type']; ?>, (Pack of <?php echo $get_product['0']['packof']; ?>)</h4>
             </tr>
             <tr>
-              <h6 class="d-inline" style="font-size:26px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $row['offeredprice'] ?>
+              <h6 class="d-inline" style="font-size:26px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $get_product['0']['offeredprice'] ?>
               </h6>
-              <h6 class="text-muted ml-1 d-inline" style="font-size:18px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $row['realprice'] ?></h6>
-              <p class="d-inline ml-3 font-weight-bold" style="font-size: 15px;color:#f01000;"><?php $off = round(((($row['realprice'] - $row['offeredprice']) / $row['realprice']) * 100), 2);
+              <h6 class="text-muted ml-1 d-inline" style="font-size:18px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $get_product['0']['realprice'] ?></h6>
+              <p class="d-inline ml-3 font-weight-bold" style="font-size: 15px;color:#f01000;"><?php $off = round(((($get_product['0']['realprice'] - $get_product['0']['offeredprice']) / $get_product['0']['realprice']) * 100), 2);
                                                                                                 echo $off; ?>% off</p>
             </tr>
             <tr>
@@ -203,7 +206,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Type</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['type'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['type'] ?></p>
               </td>
             </tr>
             <tr>
@@ -211,7 +214,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Sleeve</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['sleeve'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['sleeve'] ?></p>
               </td>
             </tr>
             <tr>
@@ -227,7 +230,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Fabric</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['fabric'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['fabric'] ?></p>
               </td>
             </tr>
             <tr>
@@ -235,7 +238,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Pack Of</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['packof'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['packof'] ?></p>
               </td>
             </tr>
             <tr>
@@ -243,7 +246,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Colour</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['colour'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['colour'] ?></p>
               </td>
             </tr>
             <tr>
@@ -251,7 +254,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Neck Type</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['necktype'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['necktype'] ?></p>
               </td>
             </tr>
             <tr>
@@ -259,7 +262,7 @@
                 <p style="font-size:14px;color:grey;" class="font-weight-bold">Ideal For</p>
               </td>
               <td>
-                <p style="font-size:14px;"><?php echo $row['genderfor'] ?></p>
+                <p style="font-size:14px;"><?php echo $get_product['0']['genderfor'] ?></p>
               </td>
             </tr>
           </table>
@@ -276,12 +279,12 @@
             </tr>
             <tr>
               <h3>Ratings</h3>
-              <p class="font-weight-bold text-center mt-3 p-2" style="margin-bottom:0px;background-color:#08a300;border-radius:24px;width:60px;color:white;"><span style="font-family:myFirstFont;font-size:17px;"><?php echo $row['rating'] ?><i class="fas fa-star text-white"></i>
+              <p class="font-weight-bold text-center mt-3 p-2" style="margin-bottom:0px;background-color:#08a300;border-radius:24px;width:60px;color:white;"><span style="font-family:myFirstFont;font-size:17px;"><?php echo $get_product['0']['rating'] ?><i class="fas fa-star text-white"></i>
 
                   <span></p>
 
             </tr>
-          <?php } ?>
+    
           </table>
         </div>
       </div>

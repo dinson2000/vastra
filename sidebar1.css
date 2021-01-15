@@ -164,6 +164,11 @@ div.container-fluid {
         font-size: 40px;
     }
 }
+/* .categories{
+margin-top:100px;
+
+
+} */
 @media screen and (max-width: 768px) {
     .pa1{
         display: none;
@@ -176,6 +181,8 @@ div.container-fluid {
     }
     .categories{
       display: none;
+  
+
     }
     .align-items{
         display:none;

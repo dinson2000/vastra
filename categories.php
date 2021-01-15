@@ -1,3 +1,15 @@
+<?php require "./header.php";
+$cat_id=mysqli_real_escape_string($conn,$_GET['id']);
+if($cat_id>0){
+  $get_product=get_product($conn,'',$cat_id);
+}else{
+  ?>
+<script>
+  window.location.href='index.php';
+</script>
+  <?php
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,122 +26,44 @@
 </head>
 
 <body>
-<?php require "./header.php"; ?>
-  <div class="container-fluid cardcontainer mt-4">
+  <div class="container-fluid cardcontainer">
 
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH/images7.jpg;?>" alt="">
-      <div class="card-body" style="margin:0px;">
+    <?php
+    if(count($get_product)>0){
+      foreach($get_product as $list) {
+      ?>
+        <div class="card card1" style="margin-top:20px;">
+          <a href="product.php?id=<?php echo $list['id'] ?>">
+            <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
+          </a>
+          <div class="card-body" style="margin:0px;">
 
-        <h3 class="card-title font-weight-bold ct" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
+            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;"><?php custom_echo($list['name'], 18); ?>...</h3>
+            <!-- <p class="card-text">
   This is the coder t-shirt good cotton,premium quality.
 </p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="../images/images2.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="./images/images3.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="../images/images4.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="../images/images1.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="../images/images2.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="../images/images3.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>
-      </div>
-    </div>
-    <div class="card card1" style="margin-top:20px;">
-      <img class="card-img-top image1" src="../images/images4.jpg" alt="">
-      <div class="card-body" style="margin:0px;">
-
-        <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;">T-shirt medium size</h3>
-        <!-- <p class="card-text">
-  This is the coder t-shirt good cotton,premium quality.
-</p>  -->
-        <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i>799
-        </h6>
-        <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i>1499</h6>
-        <p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>
-      </div>
-    </div>
-
+            <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $list['offeredprice']; ?>
+            </h6>
+            <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $list['realprice']; ?></h6>
+            <?php
+            if ($list['category'] == "BEST") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>';
+            } else if ($list['category'] == "LIMITED") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>';
+            } else if ($list['category'] == "NEW") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>';
+            } else if ($list['category'] == "FEW") {
+              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>';
+            }
+            ?>
+          </div>
+        </div>
+      <?php } 
+    }
+    else{
+      echo "<h1 style='font-family:myFirstFont;'>Data not found</h1>";
+    }
+      ?>
 
 
   </div>

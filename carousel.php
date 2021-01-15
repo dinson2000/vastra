@@ -90,9 +90,7 @@ function ScaleSlider() {
         .jssora055:hover {opacity:.8;}
         .jssora055.jssora055dn {opacity:.5;}
         .jssora055.jssora055ds {opacity:.3;pointer-events:none;}
-        .margin{
-            margin-top:30px;
-        } 
+        
         @media screen and (max-width:768px){
             .margin{
             margin-top:-20px;   
