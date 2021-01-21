@@ -10969,3 +10969,42 @@ var is_error='';
             });
     }
 }
+
+function manage_cart(pid,type){
+	if(type=="update"){
+		var qty=jQuery("#"+pid+"qty").val();
+	}else{
+		var qty=jQuery("#qty").val();
+
+	}
+ jQuery.ajax({
+                url:'manage_cart.php',
+                type:'POST',
+                data:'&pid='+pid+'&qty='+qty+'&type='+type,
+                success:function(result){
+					if(type=="update" || type=="remove"){
+						window.location.href=window.location.href;
+					}
+                    jQuery('.la1').html(result);
+                }
+            });
+		}
+
+function checkout_submit(){
+	var address=jQuery("#address").val();
+	var city=jQuery("#city").val();
+	var state=jQuery("#state").val();
+	var zip=jQuery("#zip").val();
+	var payment=jQuery(".payment:checked").val();
+
+			jQuery.ajax({
+				url:'checkout_submit.php',
+				type:'POST',
+				data:'&address='+address+'&city='+city+'&state='+state+'&zip='+zip+'&payment='+payment,
+				success:function(result){
+					// alert(result);
+					window.location.href='thank_you.php';
+				}
+			});
+	
+}

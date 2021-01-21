@@ -1,6 +1,7 @@
 <?php
 require("connection.php");
 require("function.php");
+require("add_to_cart.php");
 
 $sql = "SELECT * FROM categories WHERE status='1'";
 $catArr = array();
@@ -8,7 +9,8 @@ $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
   $catArr[] = $row;
 }
-
+$obj=new add_to_cart();
+$totalProduct=$obj->totalProduct();
 ?>
 <!DOCTYPE html>
 <html>
@@ -149,19 +151,21 @@ while ($row = mysqli_fetch_assoc($result)) {
                   </a>
                   <a class="text-dark dropdown-item" href="contact_us.php">
                     <h4>24*7 help</h4>
-                  </a>
+                  </a><?php
+                  if(isset($_SESSION['USER_NAME'])){ ?>
                   <a class="text-dark dropdown-item" href="logout.php">
                     <h4>Log Out</h4>
                   </a>
+                  <?php } ?>
                 </div>
               </div>
             </div>
           </li>
-          <li class="ml-3 nav-item"><a href="thisIsCart.php" class="nav-link active text-white">
+          <li class="ml-3 nav-item"><a href="cart.php" class="nav-link active text-white">
               <h4 class="cart">
                 <i class="fas fa-shopping-cart"></i>
                 <p class="pa1"> Cart</p>
-                <span id="cart_count" class="pa1 bg-light" style="color:#FF9933;">0</span>
+                <span id="cart_count" class="pa1 bg-light la1" style="color:#FF9933;"><?php echo $totalProduct; ?></span>
               </h4>
             </a>
           </li>
@@ -198,8 +202,8 @@ while ($row = mysqli_fetch_assoc($result)) {
   ?>
 
 
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="js/jquery-3.5.1.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>

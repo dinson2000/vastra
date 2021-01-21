@@ -138,9 +138,9 @@ if($product_id>0){
         <div class="main">
             <img class="d-block mb-1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$get_product['0']['image'] ?>" style="height: 25rem; width: 100%;" alt="">
             <div class="pl-1">
-              <input class="btn font-weight-bold mb-1" type="submit" style="background-color:#FF9933;width:99%;height:40px;" value="Buy Now">
-              <input class="btn font-weight-bold" type="submit" style="background-color:#FF9933;width:49%;height: 40px;" value="Add to Cart">
-              <input class="btn font-weight-bold" style="background-color:#FF9933;width:49%;height: 40px;" value="Go to Cart">
+              <input class="btn font-weight-bold mb-1" type="button" style="background-color:#FF9933;width:99%;height:40px;" value="Buy Now">
+              <a href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['id']; ?>','add')"><button class="btn font-weight-bold" href="cart.php" style="background-color:#FF9933;width:49%;height: 40px;">Add to Cart</button></a>
+              <input class="btn font-weight-bold" type="button" style="background-color:#FF9933;width:49%;height: 40px;" value="Go to Cart">
             </div>
         </div>
       </div>
@@ -161,7 +161,7 @@ if($product_id>0){
                                                                                                 echo $off; ?>% off</p>
             </tr>
             <tr>
-              <p class="font-weight-bold mt-2" style="">Select Size:</p>
+              <p class="font-weight-bold mt-2">Select Size:</p>
               <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
 <label class="btn btn-outline-warning" style="color:#FF9933;" for="btn-check-outlined">S</label><br>
                -->
@@ -170,11 +170,11 @@ if($product_id>0){
                   <span class="checkmark checkmark1"></span>
                 </label>
                 <label class="container1">
-                  <input type="checkbox" class="radio" value="S" name="size">
+                  <input type="checkbox" class="radio" value="M" name="size">
                   <span class="checkmark checkmark2"></span>
                 </label>
                 <label class="container1">
-                  <input type="checkbox" class="radio" value="S" name="size">
+                  <input type="checkbox" class="radio" value="L" name="size">
                   <span class="checkmark checkmark3"></span>
                 </label>
                 <label class="container1">
@@ -185,6 +185,21 @@ if($product_id>0){
                   <input type="checkbox" class="radio" value="XXL" name="size">
                   <span class="checkmark checkmark5"></span>
                 </label>
+            </tr>
+            <tr>
+            <p class="font-weight-bold mb-2">Select Quantity:</p>
+            <select class="mb-3" style="border:1px solid #FF9933;border-radius:5px;" name="" id="qty">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            </select>
             </tr>
             <tr>
               <h3 class="">Available Offers</h3>
@@ -292,6 +307,7 @@ if($product_id>0){
   </div>
 
   <?php include("footer.php") ?>
+  <script src="js/jquery-3.5.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
   <script type="text/javascript">
