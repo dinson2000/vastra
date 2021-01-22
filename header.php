@@ -75,7 +75,7 @@ $totalProduct=$obj->totalProduct();
           </ul>
         </li>
         <li>
-          <a class="color_change" href="#">Your Orders</a>
+          <a class="color_change" href="myorder.php">My Orders</a>
         </li>
         <li>
           <a class="color_change" href="#">Today's offers</a>
@@ -140,8 +140,8 @@ $totalProduct=$obj->totalProduct();
                   <a class="text-dark dropdown-item" href="login.php">
                     <h4>Account</h4>
                   </a>
-                  <a class="text-dark dropdown-item" href="login.php">
-                    <h4>Order</h4>
+                  <a class="text-dark dropdown-item" href="myorder.php">
+                    <h4>My Order</h4>
                   </a>
                   <a class="text-dark dropdown-item" href="#">
                     <h4>Today's Deals</h4>

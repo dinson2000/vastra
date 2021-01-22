@@ -24,7 +24,7 @@ if($payment_type=='cod'){
     $payment_status='success';
 
 }
-$order_status='pending';
+$order_status='1';
 $added_on=date('Y-m-d h:i:s');
 
 $user_id = $_SESSION['USER_ID'];

@@ -45,7 +45,7 @@
               <a href="product.php" target="frame"><span class="fa fa-product-hunt"></span>Product Master</a>
           </li>
           <li>
-            <a href="#" target="frame"><span class="material-icons">&#xe0c9;</span> Order Master</a>
+            <a href="order_master.php" target="frame"><span class="material-icons">&#xe0c9;</span> Order Master</a>
           </li>
           <li>
             <a href="user.php" target="frame"><span class="material-icons">&#xe0c9;</span> User Master</a>

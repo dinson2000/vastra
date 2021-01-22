@@ -77,14 +77,14 @@ include("./header.php");
         <td style="width: 100px;"><img src="<?php echo PRODUCT_IMAGE_SITE_PATH . $image; ?>" style="width:100px;height:100px;" alt="">
         </td>
         <td><?php echo $pname; ?></td>
-        <td><i class="fas fa-rupee-sign"></i><?php echo ($realprice); ?></td>
+        <td><i class="fas fa-rupee-sign"></i><?php echo ($offeredprice); ?></td>
         <td>
          <input type="number" class="text-center" id="<?php echo $key; ?>qty" style="width:41px;border:1px solid #ff9933;border-radius:4px;" value="<?php echo $qty; ?>">
          <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key; ?>','update')"><button style="background-color:#FF9933;" class="btn"><i class="trash fas fa-cart-plus"></i>
            <p id="btn1" style="font-family:myFirstFont;" class="btn1 m-0">UPDATE</p>
           </button></a>
         </td>
-        <td><i class="fas fa-rupee-sign"></i><?php echo ($realprice * $qty); ?></td>
+        <td><i class="fas fa-rupee-sign"></i><?php echo ($offeredprice * $qty); ?></td>
           <td><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key; ?>','remove')"><button style="background-color:#FF9933;" class="btn"><i class="trash fas fa-trash"></i>
            <p id="btn1" style="font-family:myFirstFont;" class="btn1 m-0">REMOVE</p>
           </button></a></td>
