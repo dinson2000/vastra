@@ -13,17 +13,117 @@ if (!isset($_SESSION['USER_LOGIN'])) {
   <script>
     window.location.href = "login.php";
   </script>
-<?php
+  <?php
 
 }
 
-// if(isset($_POST['submit1'])){
-  // $user_id=$_SESSION['USER_LOGIN'];
-  
-  // $total_price=$cartTotal;
-  
+if (isset($_POST['submit'])) {
 
-// }
+  $cartTotal = 0;
+  $address = get_post($conn, $_POST['address']);
+  $city = get_post($conn, $_POST['city']);
+  $state = get_post($conn, $_POST['state']);
+  $zip = get_post($conn, $_POST['zip']);
+  $payment_type = get_post($conn, $_POST['payment']);
+  foreach ($_SESSION['cart'] as $key => $val) {
+    $productArr = get_product($conn, '', '', $key);
+
+    $offeredprice = $productArr[0]['offeredprice'];
+
+    $qty = $val['qty'];
+    $cartTotal = $cartTotal + ($offeredprice * $qty);
+  }
+
+
+  $total_price = $cartTotal;
+  $payment_status = 'pending';
+  if ($payment_type == 'cod') {
+    $payment_status = 'success';
+  }
+  $order_status = '1';
+  $added_on = date('Y-m-d h:i:s');
+
+  $user_id = $_SESSION['USER_ID'];
+  $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+
+  mysqli_query($conn, "INSERT INTO `order`(user_id,address,city,pincode,payment_type,total_price,payment_status,order_status,txnid,added_on)VALUES('$user_id','$address','$city','$zip','$payment_type','$total_price','$payment_status','$order_status','$txnid','$added_on')");
+
+  $order_id = mysqli_insert_id($conn);
+  foreach ($_SESSION['cart'] as $key => $val) {
+    $productArr = get_product($conn, '', '', $key);
+
+    $offeredprice = $productArr[0]['offeredprice'];
+
+    $qty = $val['qty'];
+    // $cartTotal = $cartTotal + ($offeredprice * $qty);
+
+    mysqli_query($conn, "INSERT INTO `order_detail`(order_id,product_id,qty,price)VALUES('$order_id','$key','$qty','$offeredprice')");
+  }
+  unset($_SESSION['cart']);
+  if ($payment_type == 'payu') {
+    $MERCHANT_KEY = "gtKFFx";
+    $SALT = "eCwWELxi";
+    $hash_string = '';
+    //$PAYU_BASE_URL = "https://secure.payu.in";
+    $PAYU_BASE_URL = "https://test.payu.in";
+    $action = '';
+    $posted = array();
+    if (!empty($_POST)) {
+      foreach ($_POST as $key => $value) {
+        $posted[$key] = $value;
+      }
+    }
+    $userArr = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user where id='$user_id'"));
+    $formError = 0;
+    $posted['txnid'] = $txnid;
+    $posted['amount'] = $total_price;
+    $posted['firstname'] = $userArr['name'];
+    $posted['email'] = $userArr['email'];
+    $posted['phone'] = $userArr['phone'];
+    $posted['productinfo'] = "productinfo";
+    $posted['key'] = $MERCHANT_KEY;
+    $hash = '';
+    $hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+    if (empty($posted['hash']) && sizeof($posted) > 0) {
+      if (
+        empty($posted['key'])
+        || empty($posted['txnid'])
+        || empty($posted['amount'])
+        || empty($posted['firstname'])
+        || empty($posted['email'])
+        || empty($posted['phone'])
+        || empty($posted['productinfo'])
+
+      ) {
+        $formError = 1;
+      } else {
+        $hashVarsSeq = explode('|', $hashSequence);
+        foreach ($hashVarsSeq as $hash_var) {
+          $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
+          $hash_string .= '|';
+        }
+        $hash_string .= $SALT;
+        $hash = strtolower(hash('sha512', $hash_string));
+        $action = $PAYU_BASE_URL . '/_payment';
+      }
+    } elseif (!empty($posted['hash'])) {
+      $hash = $posted['hash'];
+      $action = $PAYU_BASE_URL . '/_payment';
+    }
+
+
+    $formHtml = '<form method="post" name="payuForm" id="payuForm" action="' . $action . '"><input type="hidden" name="key" value="' . $MERCHANT_KEY . '" /><input type="hidden" name="hash" value="' . $hash . '"/><input type="hidden" name="txnid" value="' . $posted['txnid'] . '" /><input name="amount" type="hidden" value="' . $posted['amount'] . '" /><input type="hidden" name="firstname" id="firstname" value="' . $posted['firstname'] . '" /><input type="hidden" name="email" id="email" value="' . $posted['email'] . '" /><input type="hidden" name="phone" value="' . $posted['phone'] . '" /><textarea name="productinfo" style="display:none;">' . $posted['productinfo'] . '</textarea><input type="hidden" name="surl" value="http://localhost/myecom/payment_complete.php" /><input type="hidden" name="furl" value="http://localhost/myecom/payment_fail.php"/><input type="submit" style="display:none;"/></form>';
+    echo $formHtml;
+    echo '<script>document.getElementById("payuForm").submit();</script>';
+  } else {
+  ?>
+    <script>
+      window.location.href = "thank_you.php";
+    </script>
+<?php
+
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,34 +151,32 @@ if (!isset($_SESSION['USER_LOGIN'])) {
   <div class="container-fluid">
     <div class="row ">
       <!--  main row -->
-      <div class="col-md-8 daba " id="bag">
-        <div id="accordion">
 
+      <div style="font-family:myFirstFont;" class="col-md-8 daba " id="bag">
+        <div class="accordion" id="accordionExample">
           <div class="card">
             <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" style="font-family:myFirstFont;color:black;font-size:20px;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  ADDRESS DETAILS <i style="font-size:20px;" class="fas fa-caret-down"></i>
+              <h2 class="mb-0">
+                <button style="font-size: 21px;" class="btn btn-link text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  DETAILS
                 </button>
-              </h5>
+              </h2>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
                 <form action="" method="POST">
-                  <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputCity">City</label>
-                      <input type="text" class="form-control" id="city" required>
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <input type="text" name="address" class="form-control" placeholder="Address">
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="inputState">State</label>
-
-                      <select name="state" id="state" class="form-control" required>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" name="city" class="form-control" placeholder="City">
+                    </div>
+                    <div class="col">
+                      <select name="state" class="form-control" required>
                         <option value="" selected>Choose...</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -118,36 +216,33 @@ if (!isset($_SESSION['USER_LOGIN'])) {
                         <option value="West Bengal">West Bengal</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-2">
-                      <label for="inputZip">Zip</label>
-                      <input type="text" class="form-control" id="zip" required>
+                    <div class="col">
+                      <input type="text" name="zip" class="form-control" placeholder="Pincode">
                     </div>
                   </div>
-
+                  <div class="row mt-4">
+                    <div class="form-check mx-5">
+                      <input class="form-check-input" type="radio" name="payment" value="cod" checked>
+                      <label class="form-check-label">
+                        COD
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="payment" value="payu">
+                      <label class="form-check-label">
+                        PayU
+                      </label>
+                    </div>
+                  </div>
+                  <div class="text-center m-4">
+                  
+                  <input name="submit" class="btn font-weight-bold" value="Place Order" style="height:50px;width:50%;background-color:#FF9933;" type="submit">
+                  </div>
                 </form>
               </div>
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-header" id="headingOnea">
-              <h5 class="mb-0">
-                <button class="btn btn-link" style="font-family:myFirstFont;color:black;font-size:20px;" data-toggle="collapse" data-target="#collapseOnea" aria-expanded="true" aria-controls="collapseOnea">
-                  PAYMENTS METHOD <i style="font-size:20px;" class="fas fa-caret-down"></i>
-                </button>
-              </h5>
-            </div>
-
-            <div id="collapseOnea" class="collapse show" aria-labelledby="headingOnea" data-parent="#accordion">
-              <div class="card-body">
-                <div class="p-2">
-                  PayU <input type="radio" class="mr-5 payment" name="payment_type" value="payu">
-                  COD <input type="radio" name="payment_type" class="payment" value="cod">
-                </div>
-              </div>
-            </div>
-
-          </div>
 
 
         </div>
@@ -158,7 +253,7 @@ if (!isset($_SESSION['USER_LOGIN'])) {
         <h4><i class="fas fa-shopping-cart"></i> Order Summary(<?php echo $totalProduct; ?> item)</h4>
         <hr style="border-radius:100px;width:94%;margin-left:0px;background-color:#FF9933;height:1.5px;">
         <div class="p-4">
-          <?php 
+          <?php
           $cartTotal = 0;
           foreach ($_SESSION['cart'] as $key => $val) {
             $productArr = get_product($conn, '', '', $key);
@@ -227,10 +322,7 @@ if (!isset($_SESSION['USER_LOGIN'])) {
           </div>
 
         </div>
-        <form action="" method="post">
 
-          <a href="checkout.php"><button id="submit" name="submit1" onclick="checkout_submit()" style="background-color: #ff9933;height:50px;width:100%;" class="mt-4 d-block btn"><span style="font-size: 21px;" class="font-weight-bold">Place Order</span></button></a>
-        </form>
         <!-- order summary finish  -->
         <div class="row mt-5 " style="display:flex;flex-wrap:nowrap;justify-content:center;">
           <div class="column">

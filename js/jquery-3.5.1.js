@@ -11001,10 +11001,10 @@ function checkout_submit(){
 				url:'checkout_submit.php',
 				type:'POST',
 				data:'&address='+address+'&city='+city+'&state='+state+'&zip='+zip+'&payment='+payment,
-				success:function(result){
-					// alert(result);
-					window.location.href='thank_you.php';
-				}
+				// success:function(result){
+				// 	alert(result);
+				// 	 window.location.href='thank_you.php';
+				// }
 			});
 	
 }

@@ -160,18 +160,7 @@ if (isset($_POST['submit'])) {
         <label for="exampleFormControlFile1">Choose Image:</label>
         <input type="file" class="form-control-file" id="exampleFormControlFile1" value="<?php echo $image; ?>" name="image">
       </div>
-      <div class="form-group">
-        <label for="type">Select Type:</label>
-        <select class="form-control" name="type" id="sel1">
-          <option value="T-shirt">T-shirt</option>
-          <option value="Shirts">Shirts</option>
-          <option value="Full Sleeves">Full Sleeves</option>
-          <option value="Vests">Vests</option>
-          <option value="Hoodies">Hoodies</option>
-          <option value="Jackets">Jackets</option>
-
-        </select>
-      </div>
+      
       <div class="form-group">
         <label for="type">Select Type:</label>
         <select class="form-control" name="categories_id">

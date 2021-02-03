@@ -82,8 +82,8 @@ if(isset($_POST['register_btn']))
 	if($password==$password2 && $username!=NULL && $email!=NULL && $phone!=NULL)
 	{
 		//create user
-		$password=md5($password2);
-		$sql="INSERT INTO users (name,phone,email,password,gender) VALUES('$username','$phone','$email','$password','$gender')";
+		// $password=md5($password2);
+		$sql="INSERT INTO admin_users (username,password) VALUES('$username','$password')";
 		$query_run = mysqli_query($conn,$sql);
 		if($query_run)
                 {

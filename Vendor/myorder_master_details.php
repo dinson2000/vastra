@@ -3,7 +3,10 @@
 require "connection.php";
 require "function.php";
 $order_id = get_post($conn, $_GET['id']);
-
+if(isset($_POST['update_order_status'])){
+  $update_order_status=$_POST['update_order_status'];
+  mysqli_query($conn,"UPDATE `order` set order_status='$update_order_status'");
+}
 
 ?>
 <!DOCTYPE html>
@@ -71,6 +74,26 @@ $order_id = get_post($conn, $_GET['id']);
     $order_status_arr=mysqli_fetch_assoc(mysqli_query($conn,"SELECT order_status.name from order_status,`order` where order.id='$order_id' and `order`.order_status=order_status.id"));
         echo $order_status_arr['name'];
  ?>
+ <div>
+ <form action="" method="post">
+ <select class="form-control mt-2" name="update_order_status">
+ <option value="">Select Status</option>
+          <?php
+          $sql = "SELECT * from order_status";
+          $result = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            if ($row['id' == $categories_id]) {
+              echo "<option selected value='.$row[id].'>" . $row['name'] . "</option>";
+            } else {
+
+              echo "<option value='.$row[id].'>" . $row['name'] . "</option>";
+            }
+          }
+          ?>
+        </select>
+        <input type="submit" style="background-color: #3E64FF;" class="mt-4 text-white form-control btn">
+ </form>
+ </div>
   </div>
 </body>
 
