@@ -5,7 +5,7 @@ require "function.php";
 $order_id = get_post($conn, $_GET['id']);
 if(isset($_POST['update_order_status'])){
   $update_order_status=$_POST['update_order_status'];
-  mysqli_query($conn,"UPDATE `order` set order_status='$update_order_status'");
+  mysqli_query($conn,"UPDATE `order` set order_status='$update_order_status' where id='$order_id'");
 }
 
 ?>
@@ -20,7 +20,7 @@ if(isset($_POST['update_order_status'])){
 </head>
 
 <body>
-  <table style="font-family: myFirstFont;" class="table table-responsive-sm table-hover">
+  <table class="table table-responsive-sm table-hover">
     <thead>
       <tr>
         <th scope="col">Product Image</th>
@@ -34,17 +34,20 @@ if(isset($_POST['update_order_status'])){
     <tbody>
       <?php
       // echo "SELECT distinct(order_detail.id),order_detail.*,product.name,product.image, `order`.address,`order`.city,`order`.pincode from order_detail,product,`order`  where order_detail.order_id='$order_id' and order_detail.product_id=product.id";
-      $result = mysqli_query($conn, "select distinct(order_detail.id)
-      ,order_detail.*,product.name,product.image,`order`.address,`order`.city,`order`
-      .pincode from order_detail,product,`order` where order_detail.order_id='
-      $order_id' and order_detail.product_id=product.id");
+      // $res = mysqli_query($conn, "SELECT distinct (order_detail.id)
+      // ,order_detail.*,product.name,product.image,`order`.address,`order`.city,`order`
+      // .pincode from order_detail,product,`order` where order_detail.order_id='
+      // $order_id' and order_detail.product_id=product.id");
+      $res=mysqli_query($conn,"select distinct(order_detail.id),order_detail.*,product.name,product.image,`order`.address,`order`.city,`order`.pincode from order_detail,product,`order` where order_detail.order_id='$order_id' and order_detail.product_id=product.id GROUP by order_detail.id");
+      
       
       $total_price = 0;
-      while ($row = mysqli_fetch_assoc($result)) {
+      while ($row = mysqli_fetch_assoc($res) ) {
         $address = $row['address'];
         $city = $row['city'];
         $pincode = $row['pincode'];
         $total_price = $total_price + ($row['qty'] * $row['price']);
+        
         
       ?>
         <tr>
@@ -71,7 +74,7 @@ if(isset($_POST['update_order_status'])){
     <?php echo $address; ?>,<?php echo $city; ?>,<?php echo $pincode; ?><br>
     <strong>Order Status</strong>
     <?php
-    $order_status_arr=mysqli_fetch_assoc(mysqli_query($conn,"SELECT order_status.name from order_status,`order` where order.id='$order_id' and `order`.order_status=order_status.id"));
+    $order_status_arr=mysqli_fetch_assoc(mysqli_query($conn,"SELECT order_status.name from order_status,`order` where `order`.id='$order_id' and `order`.order_status=order_status.id"));
         echo $order_status_arr['name'];
  ?>
  <div>

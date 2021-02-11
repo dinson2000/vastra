@@ -29,7 +29,8 @@
       // $sql="SELECT name FROM users";
       // $query_run=mysqli_query($conn,$sql);
       
-			echo $_SESSION['user_name']; 
+			echo "Admin"; 
+			// echo $_SESSION['user_name']; 
 			?></a></h4>
 
 				<!-- <h1><a href="index.html" class="">VN</a></h1> -->

@@ -46,6 +46,7 @@ $order_id=get_post($conn,$_GET['id']);
 <tbody>
     <?php 
       $uid=$_SESSION['USER_ID'];
+      // prx($_SESSION);
       $result=mysqli_query($conn,"SELECT distinct(order_detail.id),order_detail.*,product.name,product.image from order_detail,product,`order` where order_detail.order_id='$order_id' and `order`.user_id='$uid' and order_detail.product_id=product.id");
       $total_price=0;
       while($row=mysqli_fetch_assoc($result)){
