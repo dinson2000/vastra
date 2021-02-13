@@ -52,7 +52,7 @@ $result=mysqli_query($conn,$sql);
       <th scope="col">Qty</th>
       <th scope="col">Size</th>
       <th scope="col">Brand</th>
-      <!-- <th scope="col">Handle</th> -->
+      <th scope="col">Select/Edit/Delete</th>
     </tr>
   </thead>
   <tbody>

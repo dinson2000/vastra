@@ -87,7 +87,10 @@ $totalProduct=$obj->totalProduct();
 
       <ul class="list-unstyled CTAs">
         <li>
-          <a href="logout.php" class="article">Log Out</a>
+          <?php if(isset($_SESSION['USER_LOGIN'])){
+            echo '<a href="logout.php" class="article">Log Out</a>';
+          }
+          ?>
         </li>
       </ul>
     </nav>
@@ -134,7 +137,7 @@ $totalProduct=$obj->totalProduct();
               <?php  } ?>
               <div class="pa1 dropdown show">
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="text-dark dropdown-item" href="index1.php">
+                  <a class="text-dark dropdown-item" href="index.php">
                     <h4>Home</h4>
                   </a>
                   <a class="text-dark dropdown-item" href="login.php">

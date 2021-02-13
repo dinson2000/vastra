@@ -10,7 +10,7 @@
 </head>
 <body>
 <footer style="background-color:black;border-top: 2px solid #FF9933;" class="mt-5 py-4">
-<div class="container">
+<div class="container-fluid p-4">
 	<div class="row">
 
 		<div class="col-lg-3">
