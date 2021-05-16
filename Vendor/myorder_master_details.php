@@ -25,6 +25,7 @@ if(isset($_POST['update_order_status'])){
       <tr>
         <th scope="col">Product Image</th>
         <th scope="col">Product Name</th>
+        <th scope="col">Size</th>
         <th scope="col">Qty</th>
         <th scope="col">Price</th>
         <th scope="col">Total Price</th>
@@ -53,6 +54,7 @@ if(isset($_POST['update_order_status'])){
         <tr>
           <td><img style="height: 100px;width:100px;" src="<?php echo PRODUCT_IMAGE_SITE_PATH . $row['image']; ?>"></td>
           <td><?php echo $row['name']; ?></td>
+          <td><?php echo $row['size']; ?></td>
           <td><?php echo $row['qty']; ?></td>
           <td><?php echo $row['price']; ?></td>
           <td><?php echo $row['price'] * $row['qty']; ?></td>

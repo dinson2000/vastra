@@ -24,7 +24,7 @@ $order_id=get_post($conn,$_GET['id']);
 
 <body>
  <div class="container-fluid">
-  <div class="row ">
+  <div class="row m-0">
    <!--  main row -->
    <div class="col-12 daba" id="bag">
     <!-- column 1 bag -->

@@ -1,7 +1,8 @@
 <?php 
 class add_to_cart{
-    function addProduct($pid,$qty){
+    function addProduct($pid,$qty,$size){
         $_SESSION['cart'][$pid]['qty']=$qty;
+        $_SESSION['cart'][$pid]['size']=$size;
     }
     function updateProduct($pid,$qty){
         if(isset($_SESSION['cart'][$pid])){

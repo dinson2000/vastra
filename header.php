@@ -17,9 +17,7 @@ $totalProduct=$obj->totalProduct();
 
 <head>
   <title>Header</title>
-  <div class="">
-
-  </div>
+  <link rel="icon" href="./images/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
   <link rel="stylesheet" type="text/css" href="./sidebar1.css">
@@ -98,7 +96,7 @@ $totalProduct=$obj->totalProduct();
     <!-- <div id="content"> -->
 
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="position:fixed;left:0;top:0;z-index:1;border-bottom:2px solid #FF9933;background-color:black;width:100%;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="position:fixed;left:0;top:0;z-index:4;border-bottom:2px solid #FF9933;background-color:black;width:100%;">
       <button type="button" id="sidebarCollapse" class="btn mr-3 ba1" style="background-color:#FF9933;">
         <span class="navbar-toggler-icon"></span>
       </button>

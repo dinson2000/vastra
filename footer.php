@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="./footer.css">
 </head>
 <body>
-<footer style="background-color:black;border-top: 2px solid #FF9933;" class="mt-5 py-4">
+<footer style="background-color:black;border-top: 2px solid #FF9933;position:relative;z-index:2;" class="mt-5 py-4">
 <div class="container-fluid p-4">
 	<div class="row">
 

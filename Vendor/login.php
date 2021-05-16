@@ -54,7 +54,7 @@ $sql="select * from admin_users where username='$username' password='$password'"
 			</div>
 			<div class="form-group">
        <div class="mt-4 row">
-       <input style="background-color:#3E64FF;color:black;" type="submit" id="btn" class="col-xl-12 btn btn-block font-weight-bold" value="LogIn" name="login">
+       <input style="background-color:#3E64FF;color:black;" type="submit" id="btn" class="col-xl-12 btn btn-block font-weight-bold" value="login" name="login">
 	   </div>
 	   <?php echo $msg; ?>
        <div class="form-group row">

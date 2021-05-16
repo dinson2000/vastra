@@ -25,10 +25,9 @@ if($product_id>0){
   <link rel="stylesheet" href="./style3.css">
   <style>
     .main {
-
       position: sticky;
       top: 150px;
-
+      z-index:1;
     }
 
     .container1 {
@@ -120,12 +119,30 @@ if($product_id>0){
       display: block;
       top: 8px;
       left: 6px;
-
+      
     }
 
     /* Show the checkmark when checked */
     .container1 input:checked~.checkmark:after {
       display: block;
+    }
+    @media screen and (max-width:768px){
+    div > .buyNow{
+      display: none;
+    }
+    div > .bottomButton1{
+      position: fixed;
+      bottom:0px;
+      left:0;
+      /* z-index: 1; */
+    }
+    div > .bottomButton2{
+      position: fixed;
+      bottom:0px;
+      right:0;
+      /* z-index: 1; */
+    }
+  
     }
   </style>
 </head>
@@ -138,14 +155,17 @@ if($product_id>0){
         <div class="main">
             <img class="d-block mb-1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$get_product['0']['image'] ?>" style="height: 25rem; width: 100%;" alt="">
             <div class="pl-1">
-              <input class="btn font-weight-bold mb-1" type="button" style="background-color:#FF9933;width:99%;height:40px;" value="Buy Now">
-              <a href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['id']; ?>','add')"><button class="btn font-weight-bold" href="cart.php" style="background-color:#FF9933;width:49%;height: 40px;">Add to Cart</button></a>
-              <input class="btn font-weight-bold" type="button" style="background-color:#FF9933;width:49%;height: 40px;" value="Go to Cart">
+              <script>
+                var size="";
+              </script>
+              <input class="btn buyNow font-weight-bold mb-1" type="button" style="background-color:#FF9933;width:99%;height:40px;" value="Buy Now">
+              <a href="javascript:void(0)" class="btn bottomButton1 font-weight-bold" type="button" onclick="manage_cart('<?php echo $get_product['0']['id']; ?>','add',size)" style="background-color:#FF9933;width:50%;height: 40px;">Add To Cart</a>
+              <a href="cart.php" class="btn bottomButton2 font-weight-bold" type="button" style="background-color:#FF9933;width:49%;height: 40px;">Go To Cart</a>
             </div>
-        </div>
+          </div>
       </div>
       <div class="col-md-8">
-        <div class="mt-5 p-2">
+        <div class="mt-3">
           <table>
             <tr>
               <h6 class="font-weight-bold" style="color:grey;"><?php echo $get_product['0']['brand']; ?></h6>
@@ -284,7 +304,7 @@ if($product_id>0){
           <table>
             <tr>
               <td style="width:500px;">
-                <p style="font-size:20px;color:black;" class="font-weight-bold m-0">Deliever To:</p><input type="text" class="p-1" style="border:1px solid grey;" value="19,Sitaram Bazar,Brahmpuri">
+                <p style="font-size:20px;color:black;" class="font-weight-bold m-0">Deliever To:</p><p class="p-1 font-weight-light">19,Sitaram Bazar,Brahmpuri</p>
               </td>
               <td>
                 <p style="font-size:20px;color:black;" class="font-weight-bold">Services:</p>
@@ -337,6 +357,7 @@ if($product_id>0){
         // the name of the box is retrieved using the .attr() method
         // as it is assumed and expected to be immutable
         var group = "input:checkbox[name='" + $box.attr("name") + "']";
+        size=$box.val();
         // the checked state of the group/box on the other hand will change
         // and the current value is retrieved using .prop() method
         $(group).prop("checked", false);

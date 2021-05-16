@@ -118,11 +118,13 @@
       ?>
         <div class="card card1" style="margin-top:20px;">
           <a href="product.php?id=<?php echo $list['id'] ?>">
+          <!-- PRODUCT_IMAGE_SITE_PATH -->
+          
             <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
           </a>
           <div class="card-body" style="margin:0px;">
 
-            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;"><?php custom_echo($list['name'], 18); ?>...</h3>
+            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:14px;font-family:myFirstFont;"><?php custom_echo($list['name'], 30); ?></h3>
             <!-- <p class="card-text">
   This is the coder t-shirt good cotton,premium quality.
 </p>  -->
@@ -144,8 +146,6 @@
         </div>
       <?php } ?>
 
-
-
     </div>
 
     <!-- New arrivals -->
@@ -153,44 +153,44 @@
       <h5 class="mb-0"><b>NEW</b></h5>
       <h1 style="border-bottom:3px solid #FF9933;display:inline">ARRIVALS</h1>
     </div>
-
     <div id="ci" class="container-fluid cardcontainer mt-4">
 
-      <?php
-     $get_product=get_product($conn,'');
-     foreach($get_product as $list){
-      ?>
-        <div class="card card1" style="margin-top:20px;">
-          <a href="product.php?id=<?php echo $list['id'] ?>">
-            <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
-          </a>
-          <div class="card-body" style="margin:0px;">
+<?php
+  $get_product=get_product($conn,'');
+foreach($get_product as $list) {
+?>
+  <div class="card card1" style="margin-top:20px;">
+    <a href="product.php?id=<?php echo $list['id'] ?>">
+    <!-- PRODUCT_IMAGE_SITE_PATH -->
+    
+      <img class="card-img-top image1" src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']; ?>" alt="">
+    </a>
+    <div class="card-body" style="margin:0px;">
 
-            <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:18px;font-family:myFirstFont;"><?php custom_echo($list['name'], 18); ?>...</h3>
-            <!-- <p class="card-text">
+      <h3 class="card-title font-weight-bold" style="margin-bottom:3px;font-size:14px;font-family:myFirstFont;"><?php custom_echo($list['name'], 30); ?></h3>
+      <!-- <p class="card-text">
 This is the coder t-shirt good cotton,premium quality.
 </p>  -->
-            <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $list['offeredprice']; ?>
-            </h6>
-            <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $list['realprice']; ?></h6>
-            <?php
-            if ($list['category'] == "BEST") {
-              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>';
-            } else if ($list['category'] == "LIMITED") {
-              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>';
-            } else if ($list['category'] == "NEW") {
-              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>';
-            } else if ($list['category'] == "FEW") {
-              echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>';
-            }
-            ?>
-          </div>
-        </div>
-      <?php } ?>
-
-
-
+      <h6 class="d-inline card-subtitle" style="font-size:18px;font-family:myFirstFont;"><i class="fas fa-rupee-sign"></i><?php echo $list['offeredprice']; ?>
+      </h6>
+      <h6 class="text-muted ml-1 d-inline card-subtitle" style="font-size:14px;font-family:myFirstFont;text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo $list['realprice']; ?></h6>
+      <?php
+      if ($list['category'] == "BEST") {
+        echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#5294ff;border-radius:10px;width:80px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">BEST !!<span></p>';
+      } else if ($list['category'] == "LIMITED") {
+        echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#F71616B3;border-radius:10px;width:100px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">LIMITED !!<span></p>';
+      } else if ($list['category'] == "NEW") {
+        echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#64ed88;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">NEW !!<span></p>';
+      } else if ($list['category'] == "FEW") {
+        echo '<p class="font-weight-bold text-center mt-3" style="margin-bottom:0px;background-color:#ffa436;border-radius:10px;width:70px;color:white;"><span style="font-family:myFirstFont;font-size:13px;">FEW !!<span></p>';
+      }
+      ?>
     </div>
+  </div>
+<?php } ?>
+
+</div>
+   
     <!-- New Arrivals End -->
 
     <?php include('./footer.php'); ?>

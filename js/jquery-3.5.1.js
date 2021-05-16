@@ -10970,9 +10970,30 @@ var is_error='';
     }
 }
 
-function manage_cart(pid,type){
+function manage_cart(pid,type,size){
 	if(type=="update"){
 		var qty=jQuery("#"+pid+"qty").val();
+	}else{
+		var qty=jQuery("#qty").val();
+		// var size=$box.val();
+		
+
+	}
+ jQuery.ajax({
+                url:'manage_cart.php',
+                type:'POST',
+                data:'&pid='+pid+'&qty='+qty+'&size='+size+'&type='+type,
+                success:function(result){
+					if(type=="update" || type=="remove"){
+						window.location.href=window.location.href;
+					}
+                    jQuery('.la1').html(result);
+                }
+            });
+		}
+function manage_cart1(pid,type){
+	if(type=="update"){
+		var qty=jQuery("#"+pid+"qty1").val();
 	}else{
 		var qty=jQuery("#qty").val();
 

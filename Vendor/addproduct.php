@@ -154,7 +154,8 @@ if (isset($_POST['submit'])) {
         <p class="text-danger mt-2"> <?php echo $msg; ?></p>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Product Name:</label>
-        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="1" value="<?php echo $name; ?>" name="p_name"></textarea>
+        <input type="text" class="form-control" id="productName" rows="1" value="<?php echo $name; ?>" name="p_name"></textarea>
+        <p id="characterLimit" class="mt-1 text-danger">You are allowed to enter upto 35 characters.</p>
       </div>
       <div class="form-group">
         <label for="exampleFormControlFile1">Choose Image:</label>
@@ -256,6 +257,22 @@ if (isset($_POST['submit'])) {
       <button type="reset" class="btn btn-dark ml-3" name="submit1">Reset</button>
     </form>
   </div>
+  <script>
+  let productName=document.getElementById("productName");
+  let characterLimit=document.getElementById("characterLimit");
+      characterLimit.style.display="none"; 
+    productName.addEventListener('keydown',function(e){
+      if(productName.value.length>=35 && e.keyCode!==46 && e.keyCode!==8){
+        characterLimit.style.display="block";
+        e.preventDefault();
+      }else{
+        characterLimit.style.display="none";
+      }
+    });
+    
+
+</script>
 </body>
+
 
 </html>

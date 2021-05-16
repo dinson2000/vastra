@@ -31,6 +31,7 @@ if (isset($_POST['submit'])) {
     $offeredprice = $productArr[0]['offeredprice'];
 
     $qty = $val['qty'];
+    $size = $val['size'];
     $cartTotal = $cartTotal + ($offeredprice * $qty);
   }
 
@@ -46,7 +47,7 @@ if (isset($_POST['submit'])) {
   $user_id = $_SESSION['USER_ID'];
   $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 
-  mysqli_query($conn, "INSERT INTO `order`(user_id,address,city,pincode,payment_type,total_price,payment_status,order_status,txnid,added_on)VALUES('$user_id','$address','$city','$zip','$payment_type','$total_price','$payment_status','$order_status','$txnid','$added_on')");
+  mysqli_query($conn, "INSERT INTO `order`(user_id,address,city,pincode,payment_type,total_price,size,payment_status,order_status,txnid,added_on)VALUES('$user_id','$address','$city','$zip','$payment_type','$total_price','$size','$payment_status','$order_status','$txnid','$added_on')");
 
   $order_id = mysqli_insert_id($conn);
   foreach ($_SESSION['cart'] as $key => $val) {
@@ -55,9 +56,10 @@ if (isset($_POST['submit'])) {
     $offeredprice = $productArr[0]['offeredprice'];
 
     $qty = $val['qty'];
+    $size = $val['size'];
     // $cartTotal = $cartTotal + ($offeredprice * $qty);
 
-    mysqli_query($conn, "INSERT INTO `order_detail`(order_id,product_id,qty,price)VALUES('$order_id','$key','$qty','$offeredprice')");
+    mysqli_query($conn, "INSERT INTO `order_detail`(order_id,product_id,qty,size,price)VALUES('$order_id','$key','$qty','$size','$offeredprice')");
   }
   unset($_SESSION['cart']);
   if ($payment_type == 'payu') {
@@ -149,7 +151,7 @@ if (isset($_POST['submit'])) {
 
 <body>
   <div class="container-fluid">
-    <div class="row ">
+    <div class="row m-0">
       <!--  main row -->
 
       <div style="font-family:myFirstFont;" class="col-md-8 daba " id="bag">
@@ -268,15 +270,16 @@ if (isset($_POST['submit'])) {
           ?>
             <div class="row mb-3">
               <div class="col-4">
-                <img style="height: 80px;width:90px;" src="<?php echo PRODUCT_IMAGE_SITE_PATH . $image; ?>" alt="" srcset="">
+              <!-- PRODUCT_IMAGE_SITE_PATH -->
+                <img style="height: 80px;width:90px;" src="<?php echo PRODUCT_IMAGE_SITE_PATH. $image; ?>" alt="" srcset="">
               </div>
               <div class="col-6">
                 <div class="row">
-                  <p class="font-weight-bold mb-0" style="font-size: 19px;font-family:myFirstFont;"><?php echo $pname; ?> </p>
+                  <p class="font-weight-bold ml-2 mb-0" style="font-size: 16px;font-family:myFirstFont;"><?php echo $pname; ?> </p>
 
                 </div>
                 <div class="row">
-                  <p class="font-weight-bold" style="font-size: 19px;font-family:myFirstFont;"><i style="font-size:17px;" class="fas fa-rupee-sign"></i> <?php echo $offeredprice * $qty; ?> </p>
+                  <p class="font-weight-bold ml-2" style="font-size: 19px;font-family:myFirstFont;"><i style="font-size:17px;" class="fas fa-rupee-sign"></i> <?php echo $offeredprice * $qty; ?> </p>
 
                 </div>
               </div>

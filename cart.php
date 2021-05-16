@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 0);
 include("./header.php");
 
 
@@ -19,6 +20,7 @@ include("./header.php");
 
  <link rel="stylesheet" href="./cart.css">
  <style>
+
    .pc-view{
      display: block;
    }
@@ -38,7 +40,7 @@ include("./header.php");
 
 <body>
  <div class="container-fluid">
-  <div class="row ">
+  <div class="row p-0 m-0">
    <!--  main row -->
    <div class="col-12 daba" id="bag">
     <!-- column 1 bag -->
@@ -79,8 +81,8 @@ include("./header.php");
         <td><?php echo $pname; ?></td>
         <td><i class="fas fa-rupee-sign"></i><?php echo ($offeredprice); ?></td>
         <td>
-         <input type="number" class="text-center" id="<?php echo $key; ?>qty" style="width:41px;border:1px solid #ff9933;border-radius:4px;" value="<?php echo $qty; ?>">
-         <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key; ?>','update')"><button style="background-color:#FF9933;" class="btn"><i class="trash fas fa-cart-plus"></i>
+         <input type="number" class="text-center" id="<?php echo $key; ?>qty1" style="width:41px;border:1px solid #ff9933;border-radius:4px;" value="<?php echo $qty; ?>">
+         <a href="javascript:void(0)" onclick="manage_cart1('<?php echo $key; ?>','update')"><button style="background-color:#FF9933;" class="btn"><i class="trash fas fa-cart-plus"></i>
            <p id="btn1" style="font-family:myFirstFont;" class="btn1 m-0">UPDATE</p>
           </button></a>
         </td>
@@ -109,7 +111,8 @@ include("./header.php");
         ?>
         <div style="font-family: myFirstFont;" class="row mb-4">
         <div class="col-4" style="width: 200px;">
-        <img src="<?php echo PRODUCT_IMAGE_SITE_PATH . $image; ?>" style="width:100%;height:150px;" alt="">
+        <!-- PRODUCT_IMAGE_SITE_PATH -->
+        <img src="<?php echo PRODUCT_IMAGE_SITE_PATH.$image; ?>" style="width:100%;height:150px;" alt="">
         </div>
         <div class="text-left col-8">
         <div class="row mb-1">
@@ -117,7 +120,8 @@ include("./header.php");
         <?php echo $pname; 
         ?>
         </div>
-        </div><div class="row" style="font-size:20px;">
+        </div>
+        <div class="row" style="font-size:20px;">
         <div class="col-12 mb-1">
         <i class="fas fa-rupee-sign" ></i><?php echo ($offeredprice * $qty); ?>
         <p class="text-muted d-inline" style="text-decoration: line-through;"><i class="fas fa-rupee-sign"></i><?php echo ($realprice * $qty); ?>
@@ -150,9 +154,6 @@ include("./header.php");
      
     <!-- Bag content end here -->
    </div>
-   <!-- <div class="col-md-4 p-4 daba" style="border-left: 2px solid #ff9933;">
-    asd
-   </div> -->
   </div>
  </div>
  <div class="text-center mt-3">

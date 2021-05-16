@@ -25,7 +25,7 @@ include("./header.php");
 
 <body>
  <div class="container-fluid">
-  <div class="row ">
+  <div class="row m-0">
    <!--  main row -->
    <div class="col-12 daba" id="bag">
     <!-- column 1 bag -->
